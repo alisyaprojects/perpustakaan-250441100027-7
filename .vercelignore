@@ -1,0 +1,14 @@
+.git
+.github
+node_modules
+tests
+.env
+.env.example
+.editorconfig
+.gitattributes
+README.md
+storage/logs
+storage/framework/cache
+storage/framework/sessions
+storage/framework/views
+storage/framework/testing
