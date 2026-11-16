@@ -8,7 +8,7 @@ use App\Models\User;
 
 class DashboardController extends Controller
 {
-    // Tujuan setelah login: sesuai role/permission
+
     public function index()
     {
         $user = auth()->user();

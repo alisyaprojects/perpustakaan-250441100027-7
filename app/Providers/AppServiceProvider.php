@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Pusat aturan pengelolaan buku: hanya admin dan petugas
+
         Gate::define('kelola-buku', function ($user) {
             return $user->hasAnyRole(['admin', 'petugas']);
         });

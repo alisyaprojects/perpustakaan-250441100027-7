@@ -43,7 +43,6 @@ class PinjamController extends Controller
         return redirect()->route('riwayat.user', auth()->user());
     }
 
-    // Data pribadi: dicek berdasarkan identitas yang login, bukan hanya permission
     public function riwayat(User $user)
     {
         abort_unless($user->id === auth()->id(), 403);

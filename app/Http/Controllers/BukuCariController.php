@@ -13,6 +13,8 @@ class BukuCariController extends Controller
 
         // AMAN: nilai dikirim sebagai parameter terikat (binding), bukan digabung ke string SQL
         $hasil = DB::select('SELECT * FROM bukus WHERE judul = ?', [$judul]);
+        
+        // $hasil = DB::select("SELECT * FROM bukus WHERE judul = '$judul'");
 
         return response()->json($hasil);
     }

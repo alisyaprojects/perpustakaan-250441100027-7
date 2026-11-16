@@ -43,7 +43,6 @@ class UserManagementController extends Controller
             'role' => ['required', 'in:admin,petugas,siswa'],
         ]);
 
-        // Admin tidak boleh menurunkan role akunnya sendiri
         if ($user->id === auth()->id() && $data['role'] !== 'admin') {
             return back()->withErrors(['role' => 'Role akun sendiri tidak dapat diubah.']);
         }
