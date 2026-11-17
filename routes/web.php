@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/peminjaman/{id}', [PeminjamanDetailController::class, 'show']);
+    Route::get('/peminjaman/{id}', [PeminjamanDetailController::class, 'show'])->whereNumber('id');
     Route::get('/buku-cari', [BukuCariController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/admin/dashboard', [DashboardController::class, 'admin'])
@@ -25,9 +25,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/petugas/dashboard', [DashboardController::class, 'petugas'])
         ->middleware('permission:akses dashboard petugas')->name('petugas.dashboard');
 
+        // Alamat form tambah buku: hanya admin/petugas, siswa mendapat 403.
+    // Harus ditulis sebelum /buku/{id} supaya tidak ditangkap sebagai id.
+    Route::get('/buku/create', fn () => redirect()->route('kelola.buku.index'))
+        ->middleware('can:kelola-buku')->name('buku.create');
+
     Route::middleware('permission:lihat daftar buku')->group(function () {
         Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
-        Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
+        Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show')->whereNumber('id');
     });
 
     Route::post('/buku/{buku}/pinjam', [PinjamController::class, 'store'])
