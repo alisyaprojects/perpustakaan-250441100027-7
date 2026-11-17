@@ -1,0 +1,26 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-Cb7imFAr.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/perpustakaan.css": {
+    "file": "assets/perpustakaan-BPl1SiZ5.css",
+    "name": "perpustakaan",
+    "names": [
+      "perpustakaan.css"
+    ],
+    "src": "resources/css/perpustakaan.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Bk8Plnzc.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
