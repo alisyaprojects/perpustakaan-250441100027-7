@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="auth-card">
-    <h2>Login</h2>
+    <h2>Login - 250441100027</h2>
 
     @if (session('status'))
         <p class="auth-status">{{ session('status') }}</p>
