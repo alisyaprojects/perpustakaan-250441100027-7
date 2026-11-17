@@ -19,6 +19,7 @@ $env = [
     'APP_ROUTES_CACHE'   => '/tmp/routes.php',
     'APP_SERVICES_CACHE' => '/tmp/services.php',
     'LOG_CHANNEL'        => 'stderr',
+    'LOG_STDERR_FORMATTER' => 'Monolog\Formatter\LineFormatter',
 ];
 foreach ($env as $key => $value) {
     putenv("$key=$value");
