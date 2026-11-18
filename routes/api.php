@@ -4,8 +4,8 @@ use App\Http\Controllers\Api\BukuController;
 use App\Http\Controllers\Api\RekapController;
 use Illuminate\Support\Facades\Route;
 
-// 'web' dipasang agar sesi login terbaca; 'auth' menolak yang belum login
-Route::middleware(['web', 'auth'])->group(function () {
+// auth:sanctum otomatis membaca cookie sesi login dari statefulApi()
+Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::middleware('permission:lihat daftar buku')->group(function () {
         Route::get('buku', [BukuController::class, 'index'])->name('api.buku.index');
