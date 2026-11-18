@@ -13,7 +13,8 @@ $app = Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->trustProxies(at: '*');   // <-- BARIS BARU
+        $middleware->trustProxies(at: '*');
+        $middleware->statefulApi();
 
         $middleware->alias([
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
@@ -27,6 +28,6 @@ $app = Application::configure(basePath: dirname(__DIR__))
         );
     })->create();
 
-$app->useStoragePath('/tmp');
+$app->useStoragePath('/tmp/storage');
 
 return $app;
