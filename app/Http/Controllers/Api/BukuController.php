@@ -174,10 +174,16 @@ class BukuController extends Controller
 
 
     private function simpanGambar(UploadedFile $file): string
-    {
-        $nama = time() . '_' . Str::random(6) . '.' . $file->extension();
-        $file->move(public_path('images'), $nama);
+        {
+            $nama = time() . '_' . Str::random(6) . '.' . $file->extension();
+            $tujuan = env('VERCEL') ? '/tmp/images' : public_path('images');
 
-        return 'images/' . $nama;
+            if (! is_dir($tujuan)) {
+                mkdir($tujuan, 0777, true);
+            }
+
+            $file->move($tujuan, $nama);
+
+            return 'images/' . $nama;
+        }
     }
-}
