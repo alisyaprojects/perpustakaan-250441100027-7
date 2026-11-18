@@ -12,31 +12,19 @@ foreach (['app/public', 'framework/cache/data', 'framework/sessions', 'framework
     }
 }
 
-$host = $_SERVER['HTTP_X_FORWARDED_HOST'] ?? $_SERVER['HTTP_HOST'] ?? 'perpustakaan-250441100027-7.vercel.app';
-
 $env = [
-    'APP_CONFIG_CACHE'         => '/tmp/config.php',
-    'APP_EVENTS_CACHE'         => '/tmp/events.php',
-    'APP_PACKAGES_CACHE'       => '/tmp/packages.php',
-    'APP_ROUTES_CACHE'         => '/tmp/routes.php',
-    'APP_SERVICES_CACHE'       => '/tmp/services.php',
-    'LOG_CHANNEL'              => 'stderr',
-    'LOG_STDERR_FORMATTER'     => 'Monolog\Formatter\LineFormatter',
-    'SANCTUM_STATEFUL_DOMAINS' => $host,
-    'SESSION_DOMAIN'           => $host,
-    'SESSION_SECURE_COOKIE'    => 'true',
+    'APP_CONFIG_CACHE'     => '/tmp/config.php',
+    'APP_EVENTS_CACHE'     => '/tmp/events.php',
+    'APP_PACKAGES_CACHE'   => '/tmp/packages.php',
+    'APP_ROUTES_CACHE'     => '/tmp/routes.php',
+    'APP_SERVICES_CACHE'   => '/tmp/services.php',
+    'LOG_CHANNEL'          => 'stderr',
+    'LOG_STDERR_FORMATTER' => 'Monolog\Formatter\LineFormatter',
 ];
-
 foreach ($env as $key => $value) {
     putenv("$key=$value");
     $_ENV[$key] = $value;
     $_SERVER[$key] = $value;
-}
-
-// Pastikan Laravel mengenali request dari reverse proxy Vercel sebagai HTTPS
-if (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https') {
-    $_SERVER['HTTPS'] = 'on';
-    $_SERVER['SERVER_PORT'] = 443;
 }
 
 // Skrip ada di /api, tetapi aplikasi harus menganggap dirinya berada di akar (/)
